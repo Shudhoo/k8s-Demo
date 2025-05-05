@@ -1,0 +1,16 @@
+# This is service for the deployment of apache pods
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: myapcheservice
+  namespace: demo
+  labels:
+    app: apche_svc
+spec:
+  selector:
+    app: apache
+  ports:
+   - protocol: TCP
+     port: 80
+     targetPort: 80

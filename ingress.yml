@@ -1,0 +1,32 @@
+# This is Ingress Controller manifest file fro serving application sunning inside Pods and to Balance Load
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata: 
+  name: myingressservice
+  namespace: demo
+  labels:
+   app: ing_controller
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  ingressClassName: nginx
+  rules:
+   - http:
+       paths:
+        - path: /apache 
+          pathType: Prefix
+          backend:
+            service:
+              name: myapcheservice
+              port:
+                number: 80
+        - path: /custom  
+          pathType: Prefix
+          backend:
+            service:
+              name: mynginxservice
+              port:
+                number: 80
+
+

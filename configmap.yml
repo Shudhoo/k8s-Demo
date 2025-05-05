@@ -1,0 +1,20 @@
+# This is ConfigMap file for passing html to apache pods 
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: myconfigmap
+  namespace: demo
+  labels:
+    app: config_map
+data:
+  index.html: | 
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <title>Apache from ConfigMap</title>
+    </head>
+    <body>
+      <h1>Hello Hello from Apache deployed in Kubernetes!! </h1>
+    </body>
+    </html>

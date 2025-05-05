@@ -1,0 +1,32 @@
+# This is Deployment manifest file for spinning 2 Apache Pods
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myapachedeploy
+  namespace: demo
+  labels:
+    app: apache_deploy
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: apache
+  template:
+    metadata:
+      labels:  
+        app: apache
+    spec:
+      containers:
+       - name: apache-cont
+         image: httpd:latest
+         ports:
+          - containerPort: 80
+         volumeMounts:
+          - name: html-volume
+            mountPath: /usr/local/apache2/htdocs/index.html
+            subPath: index.html
+      volumes:
+       - name: html-volume
+         configMap:
+           name: myconfigmap

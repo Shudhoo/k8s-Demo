@@ -1,0 +1,16 @@
+# This is service for the deployment of nginx pods
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: mynginxservice
+  namespace: demo
+  labels:
+    app: nginx_svc
+spec:
+  selector:
+    app: nginx
+  ports:
+   - protocol: TCP
+     port: 80
+     targetPort: 80
